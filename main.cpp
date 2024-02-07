@@ -10,13 +10,22 @@ void rotatePoint(int &x, int &y, float angle) {
     x = new_x;
     y = new_y;
 }
+
 int main() {
     int gd = DETECT, gm;
     initgraph(&gd, &gm, "");
     int counter = 0;
-    int x1, y1 = 50;
-    int x2, y2 = 100;
-    while (counter < 3) {
+
+    int screenWidth = getmaxx();
+    int screenHeight = getmaxy();
+
+    int y1 = screenHeight / 2;
+    int x1 = screenWidth / 2;
+    int x2 = screenWidth - 100;
+    int y2 = screenHeight / 2;
+
+    line(x1, y1, x2, y2);
+    while (counter < 4) {
         int mid_x = (x1 + x2) / 2;
         int mid_y = (y1 + y2) / 2;
 
@@ -33,13 +42,23 @@ int main() {
         x2 += mid_x;
         y2 += mid_y;
 
+        cleardevice();
         line(x1, y1, x2, y2);
-        delay(5000);
+        delay(800);
         counter += 1;
-        // line(x1, y1, x2, y2);
-        // x = ()
     }
     getch();
     closegraph();
     return 0;
 }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
