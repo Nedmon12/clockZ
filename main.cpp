@@ -25,7 +25,7 @@ int main() {
     int y2 = screenHeight / 2;
 
     line(x1, y1, x2, y2);
-    while (counter < 4) {
+    while (counter < 20) {
         int mid_x = (x1 + x2) / 2;
         int mid_y = (y1 + y2) / 2;
 
@@ -34,8 +34,8 @@ int main() {
         x2 -= mid_x;
         y2 -= mid_y;
 
-        // rotatePoint(x1, y1, 45);
-        rotatePoint(x2, y2, 45);
+        rotatePoint(x1, y1, 45);
+        // rotatePoint(x2, y2, 45);
 
         x1 += mid_x;
         y1 += mid_y;
