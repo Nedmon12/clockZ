@@ -38,7 +38,9 @@ int main() {
     int sh_length = 80;
     int minute_angle = minute_postion(10);
     int hour_angle = hour_position(6);
-    int second_angle = second_position(40);
+    int second_angle = second_position(0);
+    int iterator = 0;
+    int minIterator = 0;
     while (true) {
         cleardevice();
         // the clock
@@ -58,10 +60,17 @@ int main() {
         line(pivotX, pivotY, houX, houY);
         line(pivotX, pivotY, minX, minY);
 
-        second_angle++;
-        minute_angle +=
-            static_cast<int>(sqrt(second_angle * second_angle)) % 60;
-        hour_angle += static_cast<int>(sqrt(minute_angle * minute_angle)) % 60;
+        second_angle = second_angle + (360 / 60);
+        iterator++;
+        if (iterator == 60) {
+            minute_angle = minute_angle + (360 / 60);
+            minIterator++;
+            iterator = 0;
+        }
+        if (minIterator == 60) {
+            hour_angle = hour_angle + (360 / 12);
+            minIterator++;
+        }
 
         delay(100);
     }
