@@ -1,5 +1,6 @@
 #include <graphics.h>
 #include <math.h>
+#define PI 3.14159265
 
 void rotatePoint(int &x, int &y, float angle) {
     float radians = angle * M_PI / 180.0;
@@ -16,38 +17,25 @@ int main() {
     initgraph(&gd, &gm, "");
     int counter = 0;
 
-    int screenWidth = getmaxx();
-    int screenHeight = getmaxy();
+    int pivotX = 200;
+    int pivotY = 200;
+    int length = 100;
+    int angle = 0;
 
-    int y1 = screenHeight / 2;
-    int x1 = screenWidth / 2;
-    int x2 = screenWidth - 100;
-    int y2 = screenHeight / 2;
-
-    line(x1, y1, x2, y2);
-    while (counter < 20) {
-        int mid_x = (x1 + x2) / 2;
-        int mid_y = (y1 + y2) / 2;
-
-        x1 -= mid_x;
-        y1 -= mid_y;
-        x2 -= mid_x;
-        y2 -= mid_y;
-
-        rotatePoint(x1, y1, 45);
-        // rotatePoint(x2, y2, 45);
-
-        x1 += mid_x;
-        y1 += mid_y;
-        x2 += mid_x;
-        y2 += mid_y;
-
+    while (true) {
         cleardevice();
-        line(x1, y1, x2, y2);
-        delay(800);
-        counter += 1;
+        circle(pivotX, pivotY, 120);
+        circle(pivotX, pivotY, 3);
+
+        int endX = pivotX + length * cos(angle * PI / 180);
+        int endY = pivotY + length * sin(angle * PI / 180);
+
+        line(pivotX, pivotY, endX, endY);
+
+        angle++;
+
+        delay(50);
     }
-    getch();
     closegraph();
     return 0;
 }
