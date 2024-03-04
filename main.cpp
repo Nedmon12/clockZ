@@ -41,20 +41,32 @@ int main() {
     int second_angle = second_position(0);
     int iterator = 0;
     int minIterator = 0;
+
     while (true) {
         cleardevice();
+        for (int i = 0; i < 12; i++) {
+            double angle = (-1 * (2 * PI * i / 12)) + 45;
+
+            int x = pivotX + (int)(110 * cos(angle));
+            int y = pivotY - (int)(110 * sin(angle));
+
+            char numStr[3];
+            sprintf(numStr, "%d", i + 1);
+            outtextxy(x, y, numStr);
+        }
         // the clock
+
         circle(pivotX, pivotY, 120);
         circle(pivotX, pivotY, 3);
 
-        int secX = pivotX + length * cos(second_angle * PI / 180);
-        int secY = pivotY + length * sin(second_angle * PI / 180);
+        int secX = pivotX + length * cos(second_angle * M_PI / 180);
+        int secY = pivotY + length * sin(second_angle * M_PI / 180);
 
-        int houX = pivotX + sh_length * cos(hour_angle * PI / 180);
-        int houY = pivotY + sh_length * sin(hour_angle * PI / 180);
+        int houX = pivotX + sh_length * cos(hour_angle * M_PI / 180);
+        int houY = pivotY + sh_length * sin(hour_angle * M_PI / 180);
 
-        int minX = pivotX + 90 * cos(minute_angle * PI / 180);
-        int minY = pivotY + 90 * sin(minute_angle * PI / 180);
+        int minX = pivotX + 90 * cos(minute_angle * M_PI / 180);
+        int minY = pivotY + 90 * sin(minute_angle * M_PI / 180);
 
         line(pivotX, pivotY, secX, secY);
         line(pivotX, pivotY, houX, houY);
@@ -72,7 +84,7 @@ int main() {
             minIterator++;
         }
 
-        delay(100);
+        delay(990);
     }
     closegraph();
     return 0;
