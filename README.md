@@ -18,5 +18,4 @@ you should be able to run it with
 
 
 
-![clock GIF] [clock]
-[clock]: https://github.com/Nedmon12/clockZ/blob/main/clock_1min.gif
+![clock GIF] (https://github.com/Nedmon12/clockZ/blob/main/clock_1min.gif)
