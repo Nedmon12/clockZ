@@ -1,5 +1,8 @@
+#include <ctime>
 #include <graphics.h>
+#include <iostream>
 #include <math.h>
+#include <time.h>
 #define PI 3.14159265
 
 void rotatePoint(int &x, int &y, float angle) {
@@ -36,14 +39,21 @@ int main() {
     int pivotY = 200;
     int length = 100;
     int sh_length = 80;
-    int minute_angle = minute_postion(10);
-    int hour_angle = hour_position(6);
+    time_t currentTime;
+    struct tm *localTime;
+    time(&currentTime);
+    localTime = localtime(&currentTime);
+    int hour = localTime->tm_hour;
+    int minute = localTime->tm_min;
+    int minute_angle = minute_postion(minute);
+    int hour_angle = hour_position(hour);
     int second_angle = second_position(0);
     int iterator = 0;
     int minIterator = 0;
 
     while (true) {
         cleardevice();
+        clock_t start = clock();
         for (int i = 0; i < 12; i++) {
             double angle = (-1 * (2 * PI * i / 12)) + 45;
 
@@ -83,8 +93,10 @@ int main() {
             hour_angle = hour_angle + (360 / 12);
             minIterator++;
         }
-
-        delay(990);
+        clock_t end = clock();
+        double timelapsed = ((double)(end - start)) / CLOCKS_PER_SEC;
+        delay(1000 - timelapsed);
+        std::cout << timelapsed << std::endl;
     }
     closegraph();
     return 0;
